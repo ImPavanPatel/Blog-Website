@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Website</title>
+</head>
+
+<body>
+  <%- include("partials/header.ejs") %>
+
+    <h1>Welcome to the Blog Website.</h1>
+
+    <a href="post">Create your Blog here.</a>
+
+    <% if (locals.posts && locals.posts.length > 0) { %>
+      <% posts.forEach(post => { %>
+        <h1><%= post.title %></h1>
+        <p><%= post.content %></p>
+        <a href="/edit/<%= post.title %>">Edit Blog</a>
+        
+        <form action="/delete/<%= post.title %>" method="POST">
+          <input type="submit" value="Delete Blog">
+        </form>
+      <% }); %>
+    <% } else { %>
+      <p>No posts found.</p>
+    <% } %>
+    
+    <%- include("partials/footer.ejs") %>
+
+</body>
+
+</html>
